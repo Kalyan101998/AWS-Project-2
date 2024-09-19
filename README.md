@@ -2,10 +2,9 @@
 
 
 # Project Description: Data Protection, Governance, and Monitoring
-* The City of Vancouver requires a robust and efficient data platform to manage and analyze safety-issued operating permits for water systems, including cooling towers, water features, and other public systems.
-
+* This project involves setting up a comprehensive data analytics platform using AWS services to manage the City of Vancouver’s animal control data. 
 ## Project Title: AWS Data Analytic Platform for the City of Vancouver - Part 2
-* This project aims to design and implement a Data Analytics Platform (DAP) using Amazon Web Services (AWS) to store, process, and analyze water system permits to ensure public health standards are met and to streamline responses to any identified issues.
+* This project aims to design and implement a Data Analytics Platform (DAP) using Amazon Web Services (AWS) to Data Protection, Governance, and Monitoring
 ## Project Objective:
 * Designing & Implementing DAP.
 ## Methodology:
@@ -13,26 +12,39 @@
 ### 1. Data Protection
 - To secure the data, multiple AWS services were used:
   - **S3 Bucket Policies**: Restricted access to the data to authorized users only.
-  - **AWS KMS (Key Management Service)**: Encryption was enabled using a symmetric key created through AWS KMS to ensure all data stored in the S3 buckets was encrypted.
-  - **Data Replication**: Backup procedures were put in place to replicate data across AWS regions to prevent data loss and ensure disaster recovery.
-  ![image](https://github.com/user-attachments/assets/adc2dab1-f4d2-49b9-bf2b-dd5057a7ea83)
+  - **AWS KMS (Key Management Service)**: Enabled encryption using a symmetric key created through AWS KMS, ensuring all data stored in S3 buckets was encrypted.
+  - **Data Replication**: Established backup procedures to replicate data across AWS regions, preventing data loss and ensuring disaster recovery
+ ![image](https://github.com/user-attachments/assets/e49efe9a-7758-422c-969f-7b38e11e7fc8)
+![image](https://github.com/user-attachments/assets/5bac0387-47a8-41ea-a63b-f82b65df2bea)
+![image](https://github.com/user-attachments/assets/5b6d4b52-f84a-4280-ba46-e9ba173893fe)
+
 ### 2. Data Governance
-- AWS CloudTrail was employed to track all API calls, changes, and events in the AWS environment.
-- This provided full transparency and traceability for any modifications made to the data or system configurations. 
-![image](https://github.com/user-attachments/assets/d596b711-6e10-4db8-baab-9eb1e96da184)
-![image](https://github.com/user-attachments/assets/0e5b7c79-c800-471a-b3cc-28c76620d94e)
-![image](https://github.com/user-attachments/assets/68b25121-9d78-4c8f-a926-af8550b1003b)
-![image](https://github.com/user-attachments/assets/6c99d3ff-f0d0-4cd7-b696-d433992f8f5c)
+- To enhance data governance and secure data access, I set up a data pipeline using AWS Glue and S3. The pipeline begins with storing data in an S3 bucket and includes steps to detect sensitive information, such as personal data. It then evaluates the data quality to ensure integrity. A row-level transformation is applied to modify the data, followed by a conditional router that filters the data based on defined criteria. Unnecessary columns are removed by changing the schema, ensuring that only essential information is retained. 
+![image](https://github.com/user-attachments/assets/6bce9758-bad3-401f-93e7-51940f268a2c)
+![image](https://github.com/user-attachments/assets/addc8763-4371-43fa-b61c-8bcf62bca1a6)
+
+
 ### 3. Data Monitoring
-- AWS CloudWatch was used to monitor system performance, track resource usage, and set alarms for predefined thresholds. Custom dashboards displayed metrics such as:
-  - **Estimated Charges**: Monitoring costs associated with data storage and processing.
-  - **Bucket Size (in Bytes)**: Tracking the growth of the data stored in the S3 buckets over time.
-  ![image](https://github.com/user-attachments/assets/db2e5517-f2c0-406a-882b-bd4560242e39)
-  ![image](https://github.com/user-attachments/assets/d5d8364d-f4f9-48b1-a33b-df459f4bbc95)
-- Screenshots and Visuals
-  - **S3 Bucket Management and Encryption**: Demonstrates the security configurations, including encryption and replication rules.
-  - **CloudTrail Logging**: Captures user actions and API requests to ensure full governance and compliance.
-  - **CloudWatch Dashboard**: Highlights system health, storage costs, and monitoring details.
-  ![image](https://github.com/user-attachments/assets/e3bde002-8dbf-434e-96bd-17f93438fcaf)
-  ![image](https://github.com/user-attachments/assets/67f6f996-f65a-4c57-8dc2-007e083a2933)
+- Monitoring data effectively is crucial for ensuring system health and keeping track of usage metrics. The screenshots show the use of Amazon CloudWatch to create custom dashboards, which aid in tracking and managing system performance.
+ ![image](https://github.com/user-attachments/assets/990d846f-b05e-4520-a026-8245fda714eb)
+
+- The CloudWatch dashboard, named "part2-parksrecreandpets-animalconinv-kalyan," includes:
+* Estimated Charges: Displays a gauge indicating the current estimated costs.
+* Number of Objects: Shows a graph tracking the count of objects over time.
+* Bucket Size in Bytes: Illustrates the size of the bucket in bytes, providing insights into storage usage.
+* Alam: An alarm named "animalcoinv-Alam-kalyan" is configured to monitor specific thresholds, such as the number of objects or estimated charges. When these thresholds are exceeded, an email alert is triggered, ensuring proactive monitoring.
+
+![image](https://github.com/user-attachments/assets/59aacaee-a8e7-4820-9ba7-28de79c4cca9)
+
+- AWS Glue job monitoring is depicted, summarizing job runs with details such as:
+* Total Runs: Three jobs executed, with two successful and one failed.
+* Run Success Rate: 67% success rate.
+* Resource Usage: Visual representation of resource utilization over time.
+- Lastly, the CloudTrail screenshot shows a trail named "part2-animalconinv-trail-kalyan" configured in the US East (N. Virginia) region, with logging enabled to track user activity and API usage.
+![image](https://github.com/user-attachments/assets/02133a49-c1fb-4ddc-ae47-388c70f3e977)
+
+
+## AWS CloudTrail
+The CloudTrail configuration includes a trail named "part2-animalconinv-trail-kalyan" in the US East (N. Virginia) region. Logging is enabled, capturing user activity and API usage for enhanced security and compliance.
+
 
